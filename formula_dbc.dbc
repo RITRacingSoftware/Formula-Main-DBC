@@ -189,7 +189,7 @@ BO_ 176 MCU_Fast_Info: 8 MCU
 
 BO_ 301 VC_Status: 8 VC
  SG_ VC_Status_VehicleState : 0|4@1+ (1,0) [0|15] "" Vector__XXX
- SG_ VC_Status_MC_ready : 5|1@1+ (1,0) [0|1] "" Vector_XXX
+ SG_ VC_Status_MC_ready : 5|4@1+ (1,0) [0|15] "" Vector_XXX
 
 BO_ 302 VC_PedalInputs: 8 VC
  SG_ VC_PedalInputs_BrakePressure : 0|16@1+ (0.1,0) [0|3000] "psi" Vector__XXX
