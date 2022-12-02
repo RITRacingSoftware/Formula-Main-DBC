@@ -24,7 +24,46 @@ NS_ :
 
 BS_:
 
-BU_: BMS MCU VC
+BU_: VC MCU BMS
+
+
+
+BO_ 301 VC_Status: 8 VC
+ SG_ VC_Status_VehicleState : 0|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ VC_Status_MC_ready : 5|4@1+ (1,0) [0|15] "" Vector__XXX
+
+BO_ 302 VC_PedalInputs: 8 VC
+ SG_ VC_PedalInputs_BrakePressure : 0|16@1+ (0.1,0) [0|3000] "psi" Vector__XXX
+ SG_ VC_PedalInputs_AccelPositionA : 16|16@1+ (0.1,0) [0|100] "%" Vector__XXX
+ SG_ VC_PedalInputs_AccelPositionB : 32|16@1+ (0.1,0) [0|100] "%" Vector__XXX
+ SG_ VC_PedalInputs_AccelPositionAvg : 48|16@1+ (0.1,0) [0|100] "%" Vector__XXX
+
+BO_ 303 VC_DashInputs: 8 VC
+ SG_ VC_DashInputs_DRSbutton : 1|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_DashInputs_Switch0 : 2|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_DashInputs_Switch1 : 3|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_DashInputs_Switch2 : 4|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_DashInputs_Switch3 : 5|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 305 VC_ShutdownStatus: 8 VC
+ SG_ VC_ShutdownStatus_BMS_input : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_ShutdownStatus_BMS_latch : 1|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_ShutdownStatus_BSPD_input : 2|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_ShutdownStatus_BSPD_latch : 3|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_ShutdownStatus_IMD1_input : 4|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_ShutdownStatus_IMD1_latch : 5|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_ShutdownStatus_IMD2_input : 6|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_ShutdownStatus_IMD2_latch : 7|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 311 VC_FaultVector: 8 VC
+ SG_ VC_FaultVector_BRAKE_SENSOR_IRRATIONAL: 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_FaultVector_ACCELERATOR_SENSOR_IRRATIONAL: 1|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_FaultVector_APPS_SENSOR_DISAGREEMENT: 2|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_FaultVector_APPS_DOUBLE_PEDAL: 3|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 315 VC_HardFaultIndicator: 8 VC
+ SG_ VC_HardFaultIndicator_task: 0|4@1+ (1,0) [0|15] "" Vector__XXX
+
 
 
 BO_ 173 MCU_Modulation_And_Flux_Info: 8 MCU
@@ -43,20 +82,20 @@ BO_ 194 MCU_Read_Write_Param_Response: 8 MCU
  SG_ D3_Data_Response : 32|16@1- (1,0) [-32768|32767] "" Vector__XXX
  SG_ D1_Parameter_Address_Response : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
 
-BO_ 193 MCU_Read_Write_Param_Command: 8 MCU
- SG_ D3_Data_Command : 32|16@1- (1,0) [-32768|32767] "" Vector__XXX
- SG_ D2_Read_Write_Command : 16|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ D1_Parameter_Address_Command : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
+BO_ 193 MCU_Read_Write_Param_Command: 8 VC
+ SG_ D3_Data_Command : 32|16@1- (1,0) [-32768|32767] "" MCU
+ SG_ D2_Read_Write_Command : 16|1@1+ (1,0) [0|1] "" MCU
+ SG_ D1_Parameter_Address_Command : 0|16@1+ (1,0) [0|65535] "" MCU
 
-BO_ 192 MCU_Command_Message: 8 MCU
- SG_ Inverter_Enable : 40|1@1+ (1,0) [0|1] "Bit" Vector__XXX
- SG_ Direction_Command : 32|1@1+ (1,0) [0|1] "Bit" Vector__XXX
- SG_ Speed_Command : 16|16@1- (1,0) [-32768|32767] "rpm" Vector__XXX
- SG_ Torque_Command : 0|16@1- (0.1,0) [-3276.8|3276.7] "Nm" Vector__XXX
- SG_ Inverter_Discharge : 41|1@1+ (1,0) [0|1] "Bit" Vector__XXX
- SG_ Torque_Limit_Command : 48|16@1- (0.1,0) [-3276.8|3276.7] "Nm" Vector__XXX
- SG_ Speed_Mode_Enable : 42|1@1+ (1,0) [0|1] "Bit" Vector__XXX
- SG_ RollingCounter : 44|4@1+ (1,0) [0|15] "Bits" Vector__XXX
+BO_ 192 MCU_Command_Message: 8 VC
+ SG_ Inverter_Enable : 40|1@1+ (1,0) [0|1] "Bit" MCU
+ SG_ Direction_Command : 32|1@1+ (1,0) [0|1] "Bit" MCU
+ SG_ Speed_Command : 16|16@1- (1,0) [-32768|32767] "rpm" MCU
+ SG_ Torque_Command : 0|16@1- (0.1,0) [-3276.8|3276.7] "Nm" MCU
+ SG_ Inverter_Discharge : 41|1@1+ (1,0) [0|1] "Bit" MCU
+ SG_ Torque_Limit_Command : 48|16@1- (0.1,0) [-3276.8|3276.7] "Nm" MCU
+ SG_ Speed_Mode_Enable : 42|1@1+ (1,0) [0|1] "Bit" MCU
+ SG_ RollingCounter : 44|4@1+ (1,0) [0|15] "Bits" MCU
 
 BO_ 171 MCU_Fault_Codes: 8 MCU
  SG_ D4_Run_Fault_Hi : 48|16@1+ (1,0) [0|65535] "" Vector__XXX
@@ -180,6 +219,9 @@ BO_ 469 MCU_U2C_Message_Rxd: 8 MCU
  SG_ D7_14V_Conditional : 39|1@1+ (1,0) [0|1] "" Vector__XXX
  SG_ D8_14V_Current_Monitor : 48|7@1+ (1,0) [0|127] "" Vector__XXX
 
+BO_ 514 BMS_Current_Limit: 8 BMS
+ SG_ D1_Max_Discharge_Current : 0|16@1+ (1,0) [0|1000] "A" Vector__XXX
+ SG_ D2_Max_Charge_Current : 16|16@1+ (1,0) [0|1000] "A" Vector__XXX
 
 BO_ 176 MCU_Fast_Info: 8 MCU
  SG_ Fast_Torque_Command : 0|16@1- (0.1,0) [-3276.8|3276.7] "Nm" Vector__XXX
@@ -187,45 +229,7 @@ BO_ 176 MCU_Fast_Info: 8 MCU
  SG_ Fast_Motor_Speed : 32|16@1- (1,0) [-32768|32767] "rpm" Vector__XXX
  SG_ Fast_DC_Bus_Voltage : 48|16@1- (0.1,0) [-3276.8|3276.7] "V" Vector__XXX
 
-BO_ 301 VC_Status: 8 VC
- SG_ VC_Status_VehicleState : 0|4@1+ (1,0) [0|15] "" Vector__XXX
- SG_ VC_Status_MC_ready : 5|4@1+ (1,0) [0|15] "" Vector__XXX
 
-BO_ 302 VC_PedalInputs: 8 VC
- SG_ VC_PedalInputs_BrakePressure : 0|16@1+ (0.1,0) [0|3000] "psi" Vector__XXX
- SG_ VC_PedalInputs_AccelPositionA : 16|16@1+ (0.1,0) [0|100] "%" Vector__XXX
- SG_ VC_PedalInputs_AccelPositionB : 32|16@1+ (0.1,0) [0|100] "%" Vector__XXX
- SG_ VC_PedalInputs_AccelPositionAvg : 48|16@1+ (0.1,0) [0|100] "%" Vector__XXX
-
-BO_ 303 VC_DashInputs: 8 VC
- SG_ VC_DashInputs_DRSbutton : 1|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_DashInputs_Switch0 : 2|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_DashInputs_Switch1 : 3|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_DashInputs_Switch2 : 4|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_DashInputs_Switch3 : 5|1@1+ (1,0) [0|1] "" Vector__XXX
-
-BO_ 305 VC_ShutdownStatus: 8 VC
- SG_ VC_ShutdownStatus_BMS_input : 0|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_ShutdownStatus_BMS_latch : 1|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_ShutdownStatus_BSPD_input : 2|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_ShutdownStatus_BSPD_latch : 3|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_ShutdownStatus_IMD1_input : 4|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_ShutdownStatus_IMD1_latch : 5|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_ShutdownStatus_IMD2_input : 6|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_ShutdownStatus_IMD2_latch : 7|1@1+ (1,0) [0|1] "" Vector__XXX
-
-BO_ 311 VC_FaultVector: 8 VC
- SG_ VC_FaultVector_BRAKE_SENSOR_IRRATIONAL: 0|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_FaultVector_ACCELERATOR_SENSOR_IRRATIONAL: 1|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_FaultVector_APPS_SENSOR_DISAGREEMENT: 2|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_FaultVector_APPS_DOUBLE_PEDAL: 3|1@1+ (1,0) [0|1] "" Vector__XXX
-
-BO_ 315 VC_HardFaultIndicator: 8 VC
- SG_ VC_HardFaultIndicator_task: 0|4@1+ (1,0) [0|15] "" Vector__XXX
-
-BO_ 514 BMS_Current_Limit: 8 BMS
- SG_ D1_Max_Discharge_Current : 0|16@1+ (1,0) [0|1000] "A" Vector__XXX
- SG_ D2_Max_Charge_Current : 16|16@1+ (1,0) [0|1000] "A" Vector__XXX
 
 BO_ 600 BMS_Status: 8  BMS
  SG_ BMS_Status_SOC: 0|8@1+ (1,0) [0|100] "%" Vector__XXX
@@ -419,7 +423,6 @@ BO_ 704 BMS_Temperatures: 8 BMS
  SG_ BMS_Temperatures_38 m5: 34|8@1- (1,0) [-128|127] "C" Vector__XXX
  SG_ BMS_Temperatures_39 m5: 42|8@1- (1,0) [-128|127] "C" Vector__XXX
 
-
 BO_ 800 BMS_DrainStatusA: 8 BMS
  SG_ BMS_DrainStatusA_Cell0: 0|1@1+ (1,0) [0|1] "" Vector__XXX
  SG_ BMS_DrainStatusA_Cell1: 1|1@1+ (1,0) [0|1] "" Vector__XXX
@@ -486,7 +489,6 @@ BO_ 800 BMS_DrainStatusA: 8 BMS
  SG_ BMS_DrainStatusA_Cell62: 62|1@1+ (1,0) [0|1] "" Vector__XXX
  SG_ BMS_DrainStatusA_Cell63: 63|1@1+ (1,0) [0|1] "" Vector__XXX
 
-
 BO_ 801 BMS_DrainStatusB: 8 BMS
  SG_ BMS_DrainStatusB_Cell64: 0|1@1+ (1,0) [0|1] "" Vector__XXX
  SG_ BMS_DrainStatusB_Cell65: 1|1@1+ (1,0) [0|1] "" Vector__XXX
@@ -541,17 +543,22 @@ BO_ 951 BMS_Ref: 8 BMS
  SG_ BMS_Ref_ref10 m1: 37|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
  SG_ BMS_Ref_ref11 m1: 46|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
 
-CM_ BU_ BMS "Battery Management System";
-CM_ BU_ MCU "Motor Control Unit";
+
+
 CM_ BU_ VC "Vehicle Controller";
+CM_ BU_ MCU "Motor Control Unit";
+CM_ BU_ BMS "Battery Management System";
+
+
 
 VAL_ 301 VC_Status_VehicleState 0 "VehicleState_NOT_READY" 1 "VehicleState_STARTUP" 2 "VehicleState_READY_TO_DRIVE" 3 "VehicleState_FAULTED";
-VAL_ 701 BMS_FaultAlert_code 0 "FaultCode_SLAVE_COMM_CELLS" 1 "FaultCode_SLAVE_COMM_TEMPS" 2 "FaultCode_SLAVE_COMM_DRAIN_REQUEST" 3 "FaultCode_CURRENT_SENSOR_COMM" 4 "FaultCode_OVER_CURRENT" 5 "FaultCode_CELL_VOLTAGE_IRRATIONAL" 6 "FaultCode_CELL_VOLTAGE_DIFF" 7 "Faultcode_OUT_OF_JUICE" 8 "FaultCode_TEMPERATURE_IRRATIONAL" 9 "FaultCode_OVER_TEMP" 10 "FaultCode_DRAIN_FAILURE";
-VAL_ 600 BMS_Status_ChargeState 0 "ChargeState_DISCONNECTED" 1 "ChargeState_CONNECTED_COMPLETE" 2 "ChargeState_CONNECTED_BALANCING" 3 "ChargeState_CONNECTED_CHARGING" 4 "ChargeState_CONNECTED_BALANCE_SENSING";
-VAL_ 950 BMS_HardFaultIndicator_task 0 "unknown" 1 "task_1Hz" 2 "task_10Hz" 3 "task_1kHz" 4 "can_rx_task";
 VAL_ 315 VC_HardFaultIndicator_task 0 "unknown" 1 "task_100Hz" ;
 
 VAL_ 192 Direction_Command 0 "CW" 1 "CCW" ;
 VAL_ 192 Inverter_Discharge 0 "Discharge Disable" 1 "Discharge Enable (if EEPROM parameter is set)" ;
 VAL_ 170 D2_Inverter_State 0 "Power up" 1 "Stop" 2 "Open Loop" 3 "Closed Loop" 4 "Internal State" 5 "Internal State" 6 "Internal State" 7 "Internal State" 8 "Idle Run" 9 "Idle Stop" 10 "Internal State" 11 "Intern State" 12 "Internal State" ;
 VAL_ 170 D1_VSM_State 0 "VSM Start State" 1 "Pre-Charge Init state" 2 "pre-charge active state" 3 "pre-charge complete state" 4 "VSM wait state" 5 "VSM ready state" 6 "Motor Running State" 7 "blink fault code state" 14 "Shutdown state for Key Switch Mode 1" 15 "Reset the inverter" ;
+
+VAL_ 600 BMS_Status_ChargeState 0 "ChargeState_DISCONNECTED" 1 "ChargeState_CONNECTED_COMPLETE" 2 "ChargeState_CONNECTED_BALANCING" 3 "ChargeState_CONNECTED_CHARGING" 4 "ChargeState_CONNECTED_BALANCE_SENSING";
+VAL_ 701 BMS_FaultAlert_code 0 "FaultCode_SLAVE_COMM_CELLS" 1 "FaultCode_SLAVE_COMM_TEMPS" 2 "FaultCode_SLAVE_COMM_DRAIN_REQUEST" 3 "FaultCode_CURRENT_SENSOR_COMM" 4 "FaultCode_OVER_CURRENT" 5 "FaultCode_CELL_VOLTAGE_IRRATIONAL" 6 "FaultCode_CELL_VOLTAGE_DIFF" 7 "Faultcode_OUT_OF_JUICE" 8 "FaultCode_TEMPERATURE_IRRATIONAL" 9 "FaultCode_OVER_TEMP" 10 "FaultCode_DRAIN_FAILURE";
+VAL_ 950 BMS_HardFaultIndicator_task 0 "unknown" 1 "task_1Hz" 2 "task_10Hz" 3 "task_1kHz" 4 "can_rx_task";
