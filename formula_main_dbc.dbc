@@ -1,4 +1,4 @@
-VERSION ""
+VERSION "f30"
 
 
 NS_ : 
@@ -33,12 +33,12 @@ NS_ :
 
 BS_:
 
-BU_: VC MCU BMS CHG
+BU_: VC MCU BMS CHG DASH
 
 
 BO_ 301 VC_Status: 8 VC
- SG_ VC_Status_VehicleState : 0|4@1+ (1,0) [0|15] "" Vector__XXX
- SG_ VC_Status_MC_ready : 5|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ VC_Status_VehicleState : 0|4@1+ (1,0) [0|15] ""  DASH
+ SG_ VC_Status_MC_ready : 5|4@1+ (1,0) [0|15] ""  DASH
 
 BO_ 302 VC_PedalInputs: 8 VC
  SG_ VC_PedalInputs_BrakePressure : 0|16@1+ (0.1,0) [0|3000] "psi" Vector__XXX
@@ -64,13 +64,13 @@ BO_ 305 VC_ShutdownStatus: 8 VC
  SG_ VC_ShutdownStatus_IMD2_latch : 7|1@1+ (1,0) [0|1] "" Vector__XXX
 
 BO_ 311 VC_FaultVector: 8 VC
- SG_ VC_FaultVector_BRAKE_SENSOR_IRRA : 0|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_FaultVector_ACCELERATOR_SENSO : 1|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_FaultVector_APPS_SENSOR_DISAG : 2|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_FaultVector_APPS_DOUBLE_PEDAL : 3|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VC_FaultVector_BRAKE_SENSOR_IRRA : 0|1@1+ (1,0) [0|1] ""  DASH
+ SG_ VC_FaultVector_ACCELERATOR_SENSO : 1|1@1+ (1,0) [0|1] ""  DASH
+ SG_ VC_FaultVector_APPS_SENSOR_DISAG : 2|1@1+ (1,0) [0|1] ""  DASH
+ SG_ VC_FaultVector_APPS_DOUBLE_PEDAL : 3|1@1+ (1,0) [0|1] ""  DASH
 
 BO_ 315 VC_HardFaultIndicator: 8 VC
- SG_ VC_HardFaultIndicator_task : 0|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ VC_HardFaultIndicator_task : 0|4@1+ (1,0) [0|15] ""  DASH
 
 BO_ 173 MCU_Modulation_And_Flux_Info: 8 MCU
  SG_ D4_Iq_Command : 48|16@1- (0.1,0) [-3276.8|3276.7] "A" Vector__XXX
@@ -159,7 +159,7 @@ BO_ 166 MCU_Current_Info: 8 MCU
 BO_ 165 MCU_Motor_Position_Info: 8 MCU
  SG_ D4_Delta_Resolver_Filtered : 48|16@1- (0.1,0) [-3276.8|3276.7] "deg" Vector__XXX
  SG_ D3_Electrical_Output_Frequency : 32|16@1- (0.1,0) [-3276.8|3276.7] "hz" Vector__XXX
- SG_ D2_Motor_Speed : 16|16@1- (1,0) [-32768|32767] "rpm" Vector__XXX
+ SG_ D2_Motor_Speed : 16|16@1- (1,0) [-32768|32767] "rpm"  DASH
  SG_ D1_Motor_Angle_Electrical : 0|16@1+ (0.1,0) [0|6553.5] "deg" Vector__XXX
 
 BO_ 164 MCU_Digital_Input_Status: 8 MCU
@@ -236,23 +236,23 @@ BO_ 176 MCU_Fast_Info: 8 MCU
  SG_ Fast_DC_Bus_Voltage : 48|16@1- (0.1,0) [-3276.8|3276.7] "V" Vector__XXX
 
 BO_ 600 BMS_Status: 8 BMS
- SG_ BMS_Status_SOC : 0|8@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ BMS_Status_SOC : 0|8@1+ (1,0) [0|100] "%"  DASH
  SG_ BMS_Status_SOC_raw : 8|8@1+ (1,0) [0|100] "%" Vector__XXX
  SG_ BMS_Status_ChargeState : 16|5@1+ (1,0) [0|4] "" Vector__XXX
- SG_ BMS_Status_PackVoltage : 21|15@1+ (0.1,0) [0|400] "V" Vector__XXX
+ SG_ BMS_Status_PackVoltage : 21|15@1+ (0.1,0) [0|400] "V"  DASH
 
 BO_ 700 BMS_FaultVector: 8 BMS
- SG_ BMS_FaultVector_SLAVE_COMM_CELLS : 0|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ BMS_FaultVector_SLAVE_COMM_TEMPS : 1|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ BMS_FaultVector_SLAVE_COMM_DRAIN : 2|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ BMS_FaultVector_CURRENT_SENSOR_C : 3|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ BMS_FaultVector_OVER_CURRENT : 4|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ BMS_FaultVector_CELL_VOLTAGE_IRR : 5|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ BMS_FaultVector_CELL_VOLTAGE_DIF : 6|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ BMS_FaultVector_OUT_OF_JUICE : 7|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ BMS_FaultVector_TEMPERATURE_IRRA : 8|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ BMS_FaultVector_OVER_TEMPERATURE : 9|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ BMS_FaultVector_DRAIN_FAILURE : 10|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ BMS_FaultVector_SLAVE_COMM_CELLS : 0|1@1+ (1,0) [0|1] ""  DASH
+ SG_ BMS_FaultVector_SLAVE_COMM_TEMPS : 1|1@1+ (1,0) [0|1] ""  DASH
+ SG_ BMS_FaultVector_SLAVE_COMM_DRAIN : 2|1@1+ (1,0) [0|1] ""  DASH
+ SG_ BMS_FaultVector_CURRENT_SENSOR_C : 3|1@1+ (1,0) [0|1] ""  DASH
+ SG_ BMS_FaultVector_OVER_CURRENT : 4|1@1+ (1,0) [0|1] ""  DASH
+ SG_ BMS_FaultVector_CELL_VOLTAGE_IRR : 5|1@1+ (1,0) [0|1] ""  DASH
+ SG_ BMS_FaultVector_CELL_VOLTAGE_DIF : 6|1@1+ (1,0) [0|1] ""  DASH
+ SG_ BMS_FaultVector_OUT_OF_JUICE : 7|1@1+ (1,0) [0|1] ""  DASH
+ SG_ BMS_FaultVector_TEMPERATURE_IRRA : 8|1@1+ (1,0) [0|1] ""  DASH
+ SG_ BMS_FaultVector_OVER_TEMPERATURE : 9|1@1+ (1,0) [0|1] ""  DASH
+ SG_ BMS_FaultVector_DRAIN_FAILURE : 10|1@1+ (1,0) [0|1] ""  DASH
 
 BO_ 701 BMS_FaultAlert: 8 BMS
  SG_ BMS_FaultAlert_code M : 0|6@1+ (1,0) [0|63] "" Vector__XXX
@@ -269,97 +269,97 @@ BO_ 701 BMS_FaultAlert: 8 BMS
  SG_ BMS_FaultAlert_failed_drain_cell m10 : 6|8@1+ (1,0) [0|255] "" Vector__XXX
 
 BO_ 702 BMS_Voltages: 8 BMS
- SG_ BMS_Voltages_mux M : 0|8@1+ (1,0) [0|255] "" Vector__XXX
- SG_ BMS_Voltages_Cell0 m0 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell1 m0 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell2 m0 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell3 m0 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell4 m0 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell5 m0 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell6 m1 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell7 m1 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell8 m1 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell9 m1 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell10 m1 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell11 m1 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell12 m2 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell13 m2 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell14 m2 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell15 m2 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell16 m2 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell17 m2 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell18 m3 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell19 m3 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell20 m3 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell21 m3 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell22 m3 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell23 m3 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell24 m4 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell25 m4 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell26 m4 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell27 m4 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell28 m4 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell29 m4 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell30 m5 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell31 m5 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell32 m5 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell33 m5 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell34 m5 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell35 m5 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell36 m6 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell37 m6 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell38 m6 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell39 m6 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell40 m6 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell41 m6 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell42 m7 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell43 m7 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell44 m7 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell45 m7 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell46 m7 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell47 m7 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell48 m8 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell49 m8 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell50 m8 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell51 m8 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell52 m8 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell53 m8 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell54 m9 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell55 m9 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell56 m9 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell57 m9 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell58 m9 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell59 m9 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell60 m10 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell61 m10 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell62 m10 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell63 m10 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell64 m10 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell65 m10 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell66 m11 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell67 m11 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell68 m11 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell69 m11 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell70 m11 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell71 m11 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell72 m12 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell73 m12 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell74 m12 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell75 m12 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell76 m12 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell77 m12 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell78 m13 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell79 m13 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell80 m13 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell81 m13 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell82 m13 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell83 m13 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell84 m14 : 8|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell85 m14 : 17|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell86 m14 : 26|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell87 m14 : 35|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell88 m14 : 44|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_Voltages_Cell89 m14 : 53|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_Voltages_mux M : 0|8@1+ (1,0) [0|255] ""  DASH
+ SG_ BMS_Voltages_Cell0 m0 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell1 m0 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell2 m0 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell3 m0 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell4 m0 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell5 m0 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell6 m1 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell7 m1 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell8 m1 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell9 m1 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell10 m1 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell11 m1 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell12 m2 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell13 m2 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell14 m2 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell15 m2 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell16 m2 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell17 m2 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell18 m3 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell19 m3 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell20 m3 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell21 m3 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell22 m3 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell23 m3 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell24 m4 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell25 m4 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell26 m4 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell27 m4 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell28 m4 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell29 m4 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell30 m5 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell31 m5 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell32 m5 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell33 m5 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell34 m5 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell35 m5 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell36 m6 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell37 m6 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell38 m6 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell39 m6 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell40 m6 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell41 m6 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell42 m7 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell43 m7 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell44 m7 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell45 m7 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell46 m7 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell47 m7 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell48 m8 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell49 m8 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell50 m8 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell51 m8 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell52 m8 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell53 m8 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell54 m9 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell55 m9 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell56 m9 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell57 m9 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell58 m9 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell59 m9 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell60 m10 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell61 m10 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell62 m10 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell63 m10 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell64 m10 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell65 m10 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell66 m11 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell67 m11 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell68 m11 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell69 m11 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell70 m11 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell71 m11 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell72 m12 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell73 m12 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell74 m12 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell75 m12 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell76 m12 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell77 m12 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell78 m13 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell79 m13 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell80 m13 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell81 m13 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell82 m13 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell83 m13 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell84 m14 : 8|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell85 m14 : 17|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell86 m14 : 26|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell87 m14 : 35|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell88 m14 : 44|9@1+ (0.01,0) [0|5.12] "V"  DASH
+ SG_ BMS_Voltages_Cell89 m14 : 53|9@1+ (0.01,0) [0|5.12] "V"  DASH
 
 BO_ 703 BMS_ThermistorVoltages: 8 BMS
  SG_ BMS_ThermistorVoltages_mux M : 0|2@1+ (1,0) [0|3] "" Vector__XXX
@@ -522,7 +522,7 @@ BO_ 801 BMS_DrainStatusB: 8 BMS
  SG_ BMS_DrainStatusB_Cell89 : 25|1@1+ (1,0) [0|1] "" Vector__XXX
 
 BO_ 900 BMS_Current: 8 BMS
- SG_ BMS_InstCurrentFilt : 0|32@1- (0.001,0) [-100|250] "A" Vector__XXX
+ SG_ BMS_InstCurrentFilt : 0|32@1- (0.001,0) [-100|250] "A"  DASH
 
 BO_ 950 BMS_HardFaultIndicator: 8 BMS
  SG_ BMS_HardFaultIndicator_task : 0|4@1+ (1,0) [0|15] "" Vector__XXX
@@ -562,6 +562,7 @@ CM_ BU_ VC "Vehicle Controller";
 CM_ BU_ MCU "Motor Control Unit";
 CM_ BU_ BMS "Battery Management System";
 CM_ BU_ CHG "Battery Charger";
+CM_ BU_ DASH "Dashboard Display";
 BA_DEF_ SG_  "SystemSignalLongSymbol" STRING ;
 BA_DEF_DEF_  "SystemSignalLongSymbol" "";
 BA_ "SystemSignalLongSymbol" SG_ 311 VC_FaultVector_BRAKE_SENSOR_IRRA "VC_FaultVector_BRAKE_SENSOR_IRRATIONAL";
