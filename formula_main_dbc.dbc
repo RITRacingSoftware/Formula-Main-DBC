@@ -33,7 +33,7 @@ NS_ :
 
 BS_:
 
-BU_: VC MCU BMS CHG DASH
+BU_: C70 VC MCU BMS CHG DASH
 
 
 BO_ 301 VC_Status: 8 VC
@@ -558,6 +558,7 @@ BO_ 2566869221 CHG_ChargeStats: 8 CHG
 
 
 
+CM_ BU_ C70 "Bosch C70 Data Logger";
 CM_ BU_ VC "Vehicle Controller";
 CM_ BU_ MCU "Motor Control Unit";
 CM_ BU_ BMS "Battery Management System";
