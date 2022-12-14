@@ -24,7 +24,7 @@ NS_ :
 
 BS_:
 
-BU_: VC MCU BMS
+BU_: VC MCU BMS CHG
 
 
 
@@ -520,11 +520,6 @@ BO_ 801 BMS_DrainStatusB: 8 BMS
 BO_ 900 BMS_Current: 8 BMS
  SG_ BMS_InstCurrentFilt : 0|32@1- (0.001,0) [-100|250] "A" Vector__XXX
 
-BO_ 2550588916 BMS_ChargeRequest: 8 BMS
- SG_ BMS_ChargeRequest_MaxVoltage: 0|16@1+ (0.1,0) [0|6553.3] "V" Vector__XXX
- SG_ BMS_ChargeRequest_MaxCurrent: 16|16@1+ (0.1,0) [0|6553.3] "A" Vector__XXX
- SG_ BMS_ChargeRequest_Control: 32|8@1+ (1,0) [0|1] "" Vector__XXX
-
 BO_ 950 BMS_HardFaultIndicator: 8 BMS
  SG_ BMS_HardFaultIndicator_task: 0|4@1+ (1,0) [0|15] "" Vector__XXX
 
@@ -545,9 +540,26 @@ BO_ 951 BMS_Ref: 8 BMS
 
 
 
+BO_ 2550588916 BMS_ChargeRequest: 8 BMS
+ SG_ BMS_ChargeRequest_MaxVoltage: 0|16@1+ (0.1,0) [0|6553.5] "V" CHG
+ SG_ BMS_ChargeRequest_MaxCurrent: 16|16@1+ (0.1,0) [0|6553.5] "A" CHG
+ SG_ BMS_ChargeRequest_Control: 32|8@1+ (1,0) [0|1] "" CHG
+
+BO_ 2566869221 CHG_ChargeStats: 8 CHG
+ SG_ CHG_OutputVoltage: 0|16@1+ (0.1,0) [0|6553.5] "V" Vector__XXX
+ SG_ CHG_OutputCurrent: 16|16@1+ (0.1,0) [0|6553.5] "A" Vector__XXX
+ SG_ CHG_Flag_HardwareFailure: 32|1@1+ (0,0) [0|1] "" Vector__XXX
+ SG_ CHG_Flag_OverTemperature: 33|1@1+ (0,0) [0|1] "" Vector__XXX
+ SG_ CHG_Flag_InputVoltage: 34|1@1+ (0,0) [0|1] "" Vector__XXX
+ SG_ CHG_Flag_StartingState: 35|1@1+ (0,0) [0|1] "" Vector__XXX
+ SG_ CHG_Flag_CommTimeout: 36|1@1+ (0,0) [0|1] "" Vector__XXX
+
+
+
 CM_ BU_ VC "Vehicle Controller";
 CM_ BU_ MCU "Motor Control Unit";
 CM_ BU_ BMS "Battery Management System";
+CM_ BU_ CHG "Battery Charger";
 
 
 
