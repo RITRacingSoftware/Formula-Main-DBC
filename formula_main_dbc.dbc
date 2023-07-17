@@ -36,32 +36,36 @@ BS_:
 BU_: C70 VC MCU BMS CHG DASH
 
 
-BO_ 301 VC_Status: 8 VC
- SG_ VC_Status_VehicleState : 0|4@1+ (1,0) [0|15] ""  DASH
- SG_ VC_Status_MC_ready : 5|4@1+ (1,0) [0|15] ""  DASH
+BO_ 301 VC_Status: 8 VCU
+ SG_ VC_Status_VehicleState : 0|4@1+ (1,0) [0|15] "" DASH
+ SG_ VC_Status_MC_State : 4|4@1+ (1,0) [0|15] "" DASH
 
-BO_ 302 VC_PedalInputs: 8 VC
- SG_ VC_PedalInputs_BrakePressure : 0|16@1+ (0.1,0) [0|3000] "psi" Vector__XXX
- SG_ VC_PedalInputs_AccelPositionA : 16|16@1+ (0.1,0) [0|100] "%" Vector__XXX
- SG_ VC_PedalInputs_AccelPositionB : 32|16@1+ (0.1,0) [0|100] "%" Vector__XXX
- SG_ VC_PedalInputs_AccelPositionAvg : 48|16@1+ (0.1,0) [0|100] "%" Vector__XXX
+ BO_ 302 VC_PedalInputs: 8 VC
+  SG_ VC_PedalInputs_BrakePressure : 0|16@1+ (0.1,0) [0|3000] "psi" Vector__XXX
+  SG_ VC_PedalInputs_AccelPositionA : 16|7@1+ (1,0) [0|100] "%" Vector__XXX
+  SG_ VC_PedalInputs_AccelPositionB : 23|7@1+ (1,0) [0|100] "%" Vector__XXX
+  SG_ VC_PedalInputs_AccelPositionAvg : 30|16@1+ (0.1,0) [0|100] "%" Vector__XXX
+  SG_ VC_PedalInputs_AccelPositionErr : 46|7@1+ (1,0) [0|100] "%" Vector__XXX
+  SG_ VC_PedalInputs_TorqueRequested : 53|8@1+ (1,0) [0|254] "Nm" Vector__XXX
 
-BO_ 303 VC_DashInputs: 8 VC
- SG_ VC_DashInputs_DRSbutton : 1|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_DashInputs_Switch0 : 2|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_DashInputs_Switch1 : 3|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_DashInputs_Switch2 : 4|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_DashInputs_Switch3 : 5|1@1+ (1,0) [0|1] "" Vector__XXX
+ BO_ 303 VC_PedalInputsRaw: 8 VC
+  SG_ VC_PedalInputsRaw_AccelVoltageA : 0|9@1+ (0.01,0) [0|5] "V" Vector__XXX
+  SG_ VC_PedalInputsRaw_AccelVoltageB : 9|9@1+ (0.01,0) [0|5] "V" Vector__XXX
+  SG_ VC_PedalInputsRaw_BrakeVoltage : 18|9@1+ (0.01,0) [0|5] "V" Vector__XXX
 
-BO_ 305 VC_ShutdownStatus: 8 VC
- SG_ VC_ShutdownStatus_BMS_input : 0|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_ShutdownStatus_BMS_latch : 1|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_ShutdownStatus_BSPD_input : 2|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_ShutdownStatus_BSPD_latch : 3|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_ShutdownStatus_IMD1_input : 4|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_ShutdownStatus_IMD1_latch : 5|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_ShutdownStatus_IMD2_input : 6|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ VC_ShutdownStatus_IMD2_latch : 7|1@1+ (1,0) [0|1] "" Vector__XXX
+
+ BO_ 304 VC_DashInputs: 8 VC
+  SG_ VC_DashInputs_RTDbutton : 1|1@1+ (1,0) [0|1] "" Vector__XXX
+  SG_ VC_DashInputs_Switch0 : 2|1@1+ (1,0) [0|1] "" Vector__XXX
+  SG_ VC_DashInputs_Switch1 : 3|1@1+ (1,0) [0|1] "" Vector__XXX
+  SG_ VC_DashInputs_Switch2 : 4|1@1+ (1,0) [0|1] "" Vector__XXX
+
+ BO_ 305 VC_ShutdownStatus: 8 VC
+  SG_ VC_ShutdownStatus_BMS_fault : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+  SG_ VC_ShutdownStatus_IMD_fault : 1|1@1+ (1,0) [0|1] "" Vector__XXX
+  SG_ VC_ShutdownStatus_BSPD_fault : 2|1@1+ (1,0) [0|1] "" Vector__XXX
+  SG_ VC_ShutdownStatus_BSPD_signal_lost : 3|1@1+ (1,0) [0|1] "" Vector__XXX
+  SG_ VC_ShutdownStatus_precharge : 4|1@1+ (1,0) [0|1] "" Vector__XXX
 
 BO_ 311 VC_FaultVector: 8 VC
  SG_ VC_FaultVector_BRAKE_SENSOR_IRRA : 0|1@1+ (1,0) [0|1] ""  DASH
@@ -71,6 +75,12 @@ BO_ 311 VC_FaultVector: 8 VC
 
 BO_ 315 VC_HardFaultIndicator: 8 VC
  SG_ VC_HardFaultIndicator_task : 0|4@1+ (1,0) [0|15] ""  DASH
+
+BO_ 316 VcRTDSRequest: 8 Vc
+ SG_ VcRequestRTDS: 0|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 420 PbxStatus: 8 PBX
+ SG_ PbxStatus_PumpOn: 0|1@1+ (1,0) [0|1] "" Vector__XXX
 
 BO_ 173 MCU_Modulation_And_Flux_Info: 8 MCU
  SG_ D4_Iq_Command : 48|16@1- (0.1,0) [-3276.8|3276.7] "A" Vector__XXX
