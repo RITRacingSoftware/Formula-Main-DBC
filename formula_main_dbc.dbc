@@ -68,9 +68,9 @@ BO_ 301 VC_Status: 8 VCU
   SG_ VC_ShutdownStatus_precharge : 4|1@1+ (1,0) [0|1] "" Vector__XXX
 
 BO_ 311 VC_FaultVector: 8 VC
- SG_ VC_FaultVector_BRAKE_SENSOR_IRRA : 0|1@1+ (1,0) [0|1] ""  DASH
- SG_ VC_FaultVector_ACCELERATOR_SENSO : 1|1@1+ (1,0) [0|1] ""  DASH
- SG_ VC_FaultVector_APPS_SENSOR_DISAG : 2|1@1+ (1,0) [0|1] ""  DASH
+ SG_ VC_FaultVector_BRAKE_SENSOR_IRRATIONAL : 0|1@1+ (1,0) [0|1] ""  DASH
+ SG_ VC_FaultVector_ACCELERATOR_SENSOR_IRRATIONAL : 1|1@1+ (1,0) [0|1] ""  DASH
+ SG_ VC_FaultVector_APPS_SENSOR_DISAGREEMENT : 2|1@1+ (1,0) [0|1] ""  DASH
  SG_ VC_FaultVector_APPS_DOUBLE_PEDAL : 3|1@1+ (1,0) [0|1] ""  DASH
 
 BO_ 315 VC_HardFaultIndicator: 8 VC
@@ -580,9 +580,6 @@ CM_ BU_ CHG "Battery Charger";
 CM_ BU_ DASH "Dashboard Display";
 BA_DEF_ SG_  "SystemSignalLongSymbol" STRING ;
 BA_DEF_DEF_  "SystemSignalLongSymbol" "";
-BA_ "SystemSignalLongSymbol" SG_ 311 VC_FaultVector_BRAKE_SENSOR_IRRA "VC_FaultVector_BRAKE_SENSOR_IRRATIONAL";
-BA_ "SystemSignalLongSymbol" SG_ 311 VC_FaultVector_ACCELERATOR_SENSO "VC_FaultVector_ACCELERATOR_SENSOR_IRRATIONAL";
-BA_ "SystemSignalLongSymbol" SG_ 311 VC_FaultVector_APPS_SENSOR_DISAG "VC_FaultVector_APPS_SENSOR_DISAGREEMENT";
 BA_ "SystemSignalLongSymbol" SG_ 469 D1_HV_Input_Current_Sensor_Valid "D1_HV_Input_Current_Sensor_Validity";
 BA_ "SystemSignalLongSymbol" SG_ 700 BMS_FaultVector_SLAVE_COMM_DRAIN "BMS_FaultVector_SLAVE_COMM_DRAIN_REQUEST";
 BA_ "SystemSignalLongSymbol" SG_ 700 BMS_FaultVector_CURRENT_SENSOR_C "BMS_FaultVector_CURRENT_SENSOR_COMM";
