@@ -35,6 +35,8 @@ BS_:
 
 BU_: C70 VC MCU BMS CHG DASH
 
+BO_ 1 RegenConfigCommand: 8 Vector__XXX
+ SG_ RegenTorque : 0|16@1- (0.1,0) [-3276.7|3276.7] "Nm" Vector__XXX
 
 BO_ 301 VC_Status: 8 VC
  SG_ VC_Status_VehicleState : 0|4@1+ (1,0) [0|15] ""  DASH
