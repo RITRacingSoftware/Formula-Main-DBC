@@ -36,7 +36,7 @@ BS_:
 BU_: C70 VC MCU BMS CHG DASH PBX
 
 
-BO_ 1791 BrakePressures: 8 C70
+BO_ 1791 C70_BrakePressures: 8 C70
  SG_ BrakePressureFront : 0|16@1- (0.2,1250) [0|2500] "psi" Vector__XXX
 
 BO_ 301 VC_Status: 8 VC
@@ -78,10 +78,10 @@ BO_ 311 VC_FaultVector: 8 VC
 BO_ 315 VC_HardFaultIndicator: 8 VC
  SG_ VC_HardFaultIndicator_task : 0|4@1+ (1,0) [0|15] ""  DASH
 
-BO_ 316 VcRTDSRequest: 8 VC
+BO_ 316 VC_RTDSRequest: 8 VC
  SG_ VcRequestRTDS : 0|1@1+ (1,0) [0|1] "" Vector__XXX
 
-BO_ 420 PbxStatus: 8 PBX
+BO_ 420 PBX_Status: 8 PBX
  SG_ PbxStatus_PumpOn : 0|1@1+ (1,0) [0|1] "" Vector__XXX
 
 BO_ 173 MCU_Modulation_And_Flux_Info: 8 MCU
