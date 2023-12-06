@@ -43,7 +43,7 @@ BO_ 1790 C70_WheelSpeeds: 8 C70
  SG_ WheelSpeed_FL : 0|16@1- (1,0) [0|65536] "" C70
  SG_ WheelSpeed_FR : 16|16@1- (1,0) [0|65536] "" C70
  SG_ WheelSpeed_RL : 32|16@1- (1,0) [0|65536] "" C70
- SG_ WheelSpeed_RR : 48|16@1- (1,0) [0|15] "" C70
+ SG_ WheelSpeed_RR : 48|16@1- (1,0) [0|65536] "" C70
 
 BO_ 301 VC_Status: 8 VC
  SG_ VC_Status_VehicleState : 0|4@1+ (1,0) [0|15] ""  DASH
@@ -51,11 +51,18 @@ BO_ 301 VC_Status: 8 VC
 
 BO_ 302 VC_PedalInputs: 8 VC
  SG_ VC_PedalInputs_BrakePressure : 0|16@1+ (0.1,0) [0|3000] "psi" Vector__XXX
- SG_ VC_PedalInputs_AccelPositionA : 16|16@1+ (0.1,0) [0|100] "%" Vector__XXX
- SG_ VC_PedalInputs_AccelPositionB : 32|16@1+ (0.1,0) [0|100] "%" Vector__XXX
- SG_ VC_PedalInputs_AccelPositionAvg : 48|16@1+ (0.1,0) [0|100] "%" Vector__XXX
+ SG_ VC_PedalInputs_AccelPositionA : 16|7@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ VC_PedalInputs_AccelPositionB : 23|7@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ VC_PedalInputs_AccelPositionAvg : 30|16@1+ (0.1,0) [0|100] "%" Vector__XXX
+ SG_ VC_PedalInputs_AccelPositionErr : 46|7@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ VC_PedalInputs_TorqueRequested : 53|8@1+ (1,0) [0|254] "Nm" Vector__XXX
 
-BO_ 303 VC_DashInputs: 8 VC
+BO_ 303 VC_PedalInputsRaw: 8 VC
+ SG_ VC_PedalInputsRaw_AccelVoltageA : 0|9@1+ (0.01,0) [0|5] "V" Vector__XXX
+ SG_ VC_PedalInputsRaw_AccelVoltageB : 9|9@1+ (0.01,0) [0|5] "V" Vector__XXX
+ SG_ VC_PedalInputsRaw_BrakeVoltage : 18|9@1+ (0.01,0) [0|5] "V" Vector__XXX
+
+BO_ 304 VC_DashInputs: 8 VC
  SG_ VC_DashInputs_DRSbutton : 1|1@1+ (1,0) [0|1] "" Vector__XXX
  SG_ VC_DashInputs_Switch0 : 2|1@1+ (1,0) [0|1] "" Vector__XXX
  SG_ VC_DashInputs_Switch1 : 3|1@1+ (1,0) [0|1] "" Vector__XXX
