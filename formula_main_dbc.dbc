@@ -252,10 +252,13 @@ BO_ 176 MCU_Fast_Info: 8 MCU
  SG_ Fast_DC_Bus_Voltage : 48|16@1- (0.1,0) [-3276.8|3276.7] "V" Vector__XXX
 
 BO_ 600 BMS_Status: 8 BMS
- SG_ BMS_Status_SOC : 0|8@1+ (1,0) [0|100] "%"  DASH
- SG_ BMS_Status_SOC_raw : 8|8@1+ (1,0) [0|100] "%" Vector__XXX
- SG_ BMS_Status_ChargeState : 16|5@1+ (1,0) [0|4] "" Vector__XXX
- SG_ BMS_Status_PackVoltage : 21|15@1+ (0.1,0) [0|400] "V"  DASH
+ SG_ BMS_Status_SOC: 0|8@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ BMS_Status_SOC_raw: 8|8@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ BMS_Status_ChargeState: 16|5@1+ (1,0) [0|4] "" Vector__XXX
+ SG_ BMS_Status_PackVoltage: 21|15@1+ (0.1,0) [0|400] "V" Vector__XXX
+ SG_ BMS_Status_MinTemperature: 36|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Status_MaxTemperature: 44|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Status_AverageTemperature: 52|8@1- (1,0) [-128|127] "C" Vector__XXX
 
 BO_ 700 BMS_FaultVector: 8 BMS
  SG_ BMS_FaultVector_SLAVE_COMM_CELLS : 0|1@1+ (1,0) [0|1] ""  DASH
