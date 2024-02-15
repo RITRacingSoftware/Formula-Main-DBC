@@ -37,7 +37,8 @@ BU_: C70 VC MCU BMS CHG DASH PBX
 
 
 BO_ 1791 C70_BrakePressures: 8 C70
- SG_ BrakePressureFront : 0|16@1- (0.2,1250) [0|2500] "psi" Vector__XXX
+ SG_ C70_BrakePressureFront : 0|16@1- (0.2,1250) [0|2500] "psi" Vector__XXX
+ SG_ C70_BrakePressureRear : 16|16@1- (0.2,1250) [0|2500] "psi" Vector__XXX
 
 BO_ 301 VC_Status: 8 VC
  SG_ VC_Status_VehicleState : 0|4@1+ (1,0) [0|15] ""  DASH
