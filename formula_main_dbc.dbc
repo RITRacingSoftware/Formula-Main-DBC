@@ -37,10 +37,10 @@ BU_: C70 VC MCU BMS CHG DASH PBX
 
 
 BO_ 1790 C70_WheelSpeeds: 8 C70
- SG_ WheelSpeed_FL : 0|16@1- (1,0) [0|65536] "" C70
- SG_ WheelSpeed_FR : 16|16@1- (1,0) [0|65536] "" C70
- SG_ WheelSpeed_RL : 32|16@1- (1,0) [0|65536] "" C70
- SG_ WheelSpeed_RR : 48|16@1- (1,0) [0|65536] "" C70
+ SG_ C70_WheelSpeed_FL : 0|16@1- (1,0) [0|65536] ""  C70
+ SG_ C70_WheelSpeed_FR : 16|16@1- (1,0) [0|65536] ""  C70
+ SG_ C70_WheelSpeed_RL : 32|16@1- (1,0) [0|65536] ""  C70
+ SG_ C70_WheelSpeed_RR : 48|16@1- (1,0) [0|65536] ""  C70
 
 BO_ 1791 C70_BrakePressures: 8 C70
  SG_ C70_BrakePressureFront : 0|16@1- (0.2,1250) [0|2500] "psi" Vector__XXX
@@ -88,8 +88,10 @@ BO_ 315 VC_HardFaultIndicator: 8 VC
 BO_ 316 VC_RTDSRequest: 8 VC
  SG_ VC_RequestRTDS : 0|1@1+ (1,0) [0|1] "" Vector__XXX
 
-BO_ 420 PBX_Status: 8 PBX
- SG_ PBX_Status_PumpOn : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+BO_ 1792 PBX_Status: 8 PBX
+ SG_ PBX_LV_Voltage : 0|11@1+ (0.01,0) [0|20] "V" Vector__XXX
+ SG_ PBX_LV_Current : 11|14@1+ (0.01,0) [0|100] "A" Vector__XXX
+ SG_ PBX_Status_PumpOn : 25|1@1+ (1,0) [0|1] "" Vector__XXX
 
 BO_ 173 MCU_Modulation_And_Flux_Info: 8 MCU
  SG_ D4_Iq_Command : 48|16@1- (0.1,0) [-3276.8|3276.7] "A" Vector__XXX
@@ -385,89 +387,89 @@ BO_ 702 BMS_Voltages: 8 BMS
 
 BO_ 703 BMS_ThermistorVoltages: 8 BMS
  SG_ BMS_ThermistorVoltages_mux M : 0|3@1+ (1,0) [0|6] "" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm0 m0: 3|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm1 m0: 12|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm2 m0: 21|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm3 m0: 30|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm4 m0: 39|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm5 m0: 48|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm6 m1: 3|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm7 m1: 12|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm8 m1: 21|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm9 m1: 30|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm10 m1: 39|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm11 m1: 48|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm12 m2: 3|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm13 m2: 12|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm14 m2: 21|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm15 m2: 30|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm16 m2: 39|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm17 m2: 48|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm18 m3: 3|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm19 m3: 12|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm20 m3: 21|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm21 m3: 30|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm22 m3: 39|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm23 m3: 48|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm24 m4: 3|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm25 m4: 12|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm26 m4: 21|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm27 m4: 30|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm28 m4: 39|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm29 m4: 48|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm30 m5: 3|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm31 m5: 12|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm32 m5: 21|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm33 m5: 30|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm34 m5: 39|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm35 m5: 48|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm36 m6: 3|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm37 m6: 12|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm38 m6: 21|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
- SG_ BMS_ThermistorVoltages_tm39 m6: 30|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm0 m0 : 3|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm1 m0 : 12|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm2 m0 : 21|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm3 m0 : 30|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm4 m0 : 39|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm5 m0 : 48|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm6 m1 : 3|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm7 m1 : 12|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm8 m1 : 21|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm9 m1 : 30|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm10 m1 : 39|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm11 m1 : 48|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm12 m2 : 3|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm13 m2 : 12|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm14 m2 : 21|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm15 m2 : 30|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm16 m2 : 39|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm17 m2 : 48|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm18 m3 : 3|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm19 m3 : 12|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm20 m3 : 21|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm21 m3 : 30|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm22 m3 : 39|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm23 m3 : 48|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm24 m4 : 3|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm25 m4 : 12|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm26 m4 : 21|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm27 m4 : 30|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm28 m4 : 39|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm29 m4 : 48|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm30 m5 : 3|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm31 m5 : 12|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm32 m5 : 21|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm33 m5 : 30|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm34 m5 : 39|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm35 m5 : 48|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm36 m6 : 3|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm37 m6 : 12|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm38 m6 : 21|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
+ SG_ BMS_ThermistorVoltages_tm39 m6 : 30|9@1+ (0.01,0) [0|5.12] "V" Vector__XXX
 
 BO_ 704 BMS_Temperatures: 8 BMS
  SG_ BMS_Temperatures_mux M : 0|3@1+ (1,0) [0|5] "" Vector__XXX
- SG_ BMS_Temperatures_0 m0: 3|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_1 m0: 11|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_2 m0: 19|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_3 m0: 27|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_4 m0: 35|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_5 m0: 43|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_6 m0: 51|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_7 m1: 3|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_8 m1: 11|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_9 m1: 19|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_10 m1: 27|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_11 m1: 35|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_12 m1: 43|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_13 m1: 51|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_14 m2: 3|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_15 m2: 11|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_16 m2: 19|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_17 m2: 27|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_18 m2: 35|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_19 m2: 43|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_20 m2: 51|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_21 m3: 3|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_22 m3: 11|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_23 m3: 19|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_24 m3: 27|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_25 m3: 35|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_26 m3: 43|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_27 m3: 51|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_28 m4: 3|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_29 m4: 11|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_30 m4: 19|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_31 m4: 27|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_32 m4: 35|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_33 m4: 43|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_34 m4: 51|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_35 m5: 3|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_36 m5: 11|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_37 m5: 19|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_38 m5: 27|8@1- (1,0) [-128|127] "C" Vector__XXX
- SG_ BMS_Temperatures_39 m5: 35|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_0 m0 : 3|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_1 m0 : 11|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_2 m0 : 19|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_3 m0 : 27|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_4 m0 : 35|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_5 m0 : 43|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_6 m0 : 51|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_7 m1 : 3|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_8 m1 : 11|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_9 m1 : 19|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_10 m1 : 27|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_11 m1 : 35|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_12 m1 : 43|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_13 m1 : 51|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_14 m2 : 3|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_15 m2 : 11|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_16 m2 : 19|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_17 m2 : 27|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_18 m2 : 35|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_19 m2 : 43|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_20 m2 : 51|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_21 m3 : 3|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_22 m3 : 11|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_23 m3 : 19|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_24 m3 : 27|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_25 m3 : 35|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_26 m3 : 43|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_27 m3 : 51|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_28 m4 : 3|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_29 m4 : 11|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_30 m4 : 19|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_31 m4 : 27|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_32 m4 : 35|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_33 m4 : 43|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_34 m4 : 51|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_35 m5 : 3|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_36 m5 : 11|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_37 m5 : 19|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_38 m5 : 27|8@1- (1,0) [-128|127] "C" Vector__XXX
+ SG_ BMS_Temperatures_39 m5 : 35|8@1- (1,0) [-128|127] "C" Vector__XXX
 
 BO_ 800 BMS_DrainStatusA: 8 BMS
  SG_ BMS_DrainStatusA_Cell0 : 0|1@1+ (1,0) [0|1] "" Vector__XXX
@@ -612,8 +614,8 @@ CM_ BU_ MCU "Motor Control Unit";
 CM_ BU_ BMS "Battery Management System";
 CM_ BU_ CHG "Charge Cart";
 CM_ BU_ DASH "Dashboard Display";
-CM_ BO_ 1791 "Brake Pressures";
-CM_ SG_ 1791 BrakePressureFront "Front Brake Pressure";
+CM_ BO_ 1790 "Wheel speeds, relayed by C70";
+CM_ BO_ 1791 "Brake Pressures, relayed by C70";
 BA_DEF_ SG_  "SystemSignalLongSymbol" STRING ;
 BA_DEF_DEF_  "SystemSignalLongSymbol" "";
 BA_ "SystemSignalLongSymbol" SG_ 305 VC_ShutdownStatus_BSPD_signal_lo "VC_ShutdownStatus_BSPD_signal_lost";
