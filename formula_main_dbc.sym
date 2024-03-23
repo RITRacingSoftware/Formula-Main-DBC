@@ -1,7 +1,7 @@
 FormatVersion=5.0 // Do not edit this line!
 Title="canmatrix-Export"
 {ENUMS}
-enum BMS_HardFaultIndicator_task(0="unknown", 1="task_1Hz", 2="task_10Hz", 3="task_1kHz", 4="can_rx_task")
+enum BMS_HardFaultIndicator_task(0="unknown", 1="task_100Hz", 2="task_1kHz", 3="can_main_rx_task", 4="can_sensor_rx_task", 5="can_tx_task")
 enum BMS_LimpMode_TempLimpLevel(0="LimpModeLevel_NO_LIMP", 1="LimpModeLevel_LEVEL_1", 2="LimpModeLevel_LEVEL_2", 3="LimpModeLevel_LEVEL_3")
 enum BMS_LimpMode_VoltageLimpLevel(0="LimpModeLevel_NO_LIMP", 1="LimpModeLevel_LEVEL_1", 2="LimpModeLevel_LEVEL_2", 3="LimpModeLevel_LEVEL_3")
 enum BMS_Status_ChargeState(0="ChargeState_DISCONNECTED", 1="ChargeState_CONNECTED_COMPLETE", 2="ChargeState_CONNECTED_BALANCING", 3="ChargeState_CONNECTED_CHARGING", 4="ChargeState_CONNECTED_BALANCE_SENSING")

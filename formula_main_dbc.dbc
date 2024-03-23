@@ -91,7 +91,7 @@ BO_ 316 VC_RTDSRequest: 8 VC
 BO_ 1792 PBX_Status: 8 PBX
  SG_ PBX_LV_Voltage : 0|11@1+ (0.01,0) [0|20] "V" Vector__XXX
  SG_ PBX_LV_Current : 11|14@1+ (0.01,0) [0|100] "A" Vector__XXX
- SG_ PBX_PumpsOn : 25|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ PBX_PumpsOn : 25|1@1+ (1,0) [0|1] ""  VC
 
 BO_ 173 MCU_Modulation_And_Flux_Info: 8 MCU
  SG_ D4_Iq_Command : 48|16@1- (0.1,0) [-3276.8|3276.7] "A" Vector__XXX
@@ -642,7 +642,7 @@ VAL_ 170 D2_Inverter_State 0 "Power up" 1 "Stop" 2 "Open Loop" 3 "Closed Loop" 4
 VAL_ 170 D1_VSM_State 0 "VSM Start State" 1 "Pre-Charge Init state" 2 "pre-charge active state" 3 "pre-charge complete state" 4 "VSM wait state" 5 "VSM ready state" 6 "Motor Running State" 7 "blink fault code state" 14 "Shutdown state for Key Switch Mode 1" 15 "Reset the inverter" ;
 VAL_ 600 BMS_Status_ChargeState 0 "ChargeState_DISCONNECTED" 1 "ChargeState_CONNECTED_COMPLETE" 2 "ChargeState_CONNECTED_BALANCING" 3 "ChargeState_CONNECTED_CHARGING" 4 "ChargeState_CONNECTED_BALANCE_SENSING" ;
 VAL_ 701 BMS_FaultAlert_code 0 "FaultCode_SLAVE_COMM_CELLS" 1 "FaultCode_SLAVE_COMM_TEMPS" 2 "FaultCode_SLAVE_COMM_DRAIN_REQUEST" 3 "FaultCode_CURRENT_SENSOR_COMM" 4 "FaultCode_OVER_CURRENT" 5 "FaultCode_CELL_VOLTAGE_IRRATIONAL" 6 "FaultCode_CELL_VOLTAGE_DIFF" 7 "Faultcode_OUT_OF_JUICE" 8 "FaultCode_TEMPERATURE_IRRATIONAL" 9 "FaultCode_OVER_TEMP" 10 "FaultCode_DRAIN_FAILURE" ;
-VAL_ 950 BMS_HardFaultIndicator_task 0 "unknown" 1 "task_1Hz" 2 "task_10Hz" 3 "task_1kHz" 4 "can_rx_task" ;
+VAL_ 950 BMS_HardFaultIndicator_task 0 "unknown" 1 "task_100Hz" 2 "task_1kHz" 3 "can_main_rx_task" 4 "can_sensor_rx_task" 5 "can_tx_task" ;
 VAL_ 901 BMS_LimpMode_VoltageLimpLevel 0 "LimpModeLevel_NO_LIMP" 1 "LimpModeLevel_LEVEL_1" 2 "LimpModeLevel_LEVEL_2" 3 "LimpModeLevel_LEVEL_3" ;
 VAL_ 901 BMS_LimpMode_TempLimpLevel 0 "LimpModeLevel_NO_LIMP" 1 "LimpModeLevel_LEVEL_1" 2 "LimpModeLevel_LEVEL_2" 3 "LimpModeLevel_LEVEL_3" ;
 
