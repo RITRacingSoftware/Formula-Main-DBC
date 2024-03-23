@@ -91,7 +91,7 @@ BO_ 316 VC_RTDSRequest: 8 VC
 BO_ 1792 PBX_Status: 8 PBX
  SG_ PBX_LV_Voltage : 0|11@1+ (0.01,0) [0|20] "V" Vector__XXX
  SG_ PBX_LV_Current : 11|14@1+ (0.01,0) [0|100] "A" Vector__XXX
- SG_ PBX_Status_PumpOn : 25|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ PBX_PumpsOn : 25|1@1+ (1,0) [0|1] "" Vector__XXX
 
 BO_ 173 MCU_Modulation_And_Flux_Info: 8 MCU
  SG_ D4_Iq_Command : 48|16@1- (0.1,0) [-3276.8|3276.7] "A" Vector__XXX
