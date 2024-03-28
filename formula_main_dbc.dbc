@@ -43,7 +43,7 @@ BO_ 1790 C70_WheelSpeeds: 8 C70
  SG_ C70_WheelSpeed_RR : 48|16@1- (1,0) [0|65536] ""  C70
 
 BO_ 1791 C70_BrakePressures: 8 C70
- SG_ C70_BrakePressureFront : 0|16@1- (0.2,1250) [0|2500] "psi" Vector__XXX
+ SG_ C70_BrakePressureFront : 0|16@1+ (1,0) [0|5000] "psi" Vector__XXX
  SG_ C70_BrakePressureRear : 16|16@1- (0.2,1250) [0|2500] "psi" Vector__XXX
 
 BO_ 301 VC_Status: 8 VC
