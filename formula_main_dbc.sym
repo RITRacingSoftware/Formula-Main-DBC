@@ -1,7 +1,7 @@
 FormatVersion=5.0 // Do not edit this line!
 Title="canmatrix-Export"
 {ENUMS}
-enum BMS_HardFaultIndicator_task(0="unknown", 1="task_100Hz", 2="task_1kHz", 3="can_main_rx_task", 4="can_sensor_rx_task", 5="can_tx_task")
+enum BMS_HardFaultIndicator_task(0="unknown", 1="task_1Hz", 2="task_10Hz", 3="task_1kHz", 4="can_rx_task")
 enum BMS_LimpMode_TempLimpLevel(0="LimpModeLevel_NO_LIMP", 1="LimpModeLevel_LEVEL_1", 2="LimpModeLevel_LEVEL_2", 3="LimpModeLevel_LEVEL_3")
 enum BMS_LimpMode_VoltageLimpLevel(0="LimpModeLevel_NO_LIMP", 1="LimpModeLevel_LEVEL_1", 2="LimpModeLevel_LEVEL_2", 3="LimpModeLevel_LEVEL_3")
 enum BMS_Status_ChargeState(0="ChargeState_DISCONNECTED", 1="ChargeState_CONNECTED_COMPLETE", 2="ChargeState_CONNECTED_BALANCING", 3="ChargeState_CONNECTED_CHARGING", 4="ChargeState_CONNECTED_BALANCE_SENSING")
@@ -13,6 +13,18 @@ enum VC_HardFaultIndicator_task(0="unknown", 1="task_100Hz")
 enum VC_Status_VehicleState(0="VehicleState_NOT_READY", 1="VehicleState_STARTUP", 2="VehicleState_READY_TO_DRIVE", 3="VehicleState_FAULTED")
 
 {SENDRECEIVE}
+
+[BMS_CellOverview]
+ID=259h
+Type=Standard
+DLC=8
+Var=BMS_Overview_Drains unsigned 51,7 /min:0 /max:76 /d:0	// Number of cells currently draining
+Var=BMS_Overview_VoltMin unsigned 24,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Overview_VoltMax unsigned 33,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Overview_VoltAvg unsigned 42,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Overview_TempAvg signed 16,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Overview_TempMin signed 0,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Overview_TempMax signed 8,8 /u:C /min:-128 /max:127 /d:0
 
 [C70_WheelSpeeds]
 ID=6FEh	// Wheel speeds, relayed by C70
@@ -344,9 +356,6 @@ Var=BMS_Status_SOC unsigned 0,8 /u:% /min:0 /max:100 /d:0
 Var=BMS_Status_SOC_raw unsigned 8,8 /u:% /min:0 /max:100 /d:0
 Var=BMS_Status_ChargeState unsigned 16,5 /min:0 /max:4 /e:BMS_Status_ChargeState /d:0
 Var=BMS_Status_PackVoltage unsigned 21,15 /u:V /f:0.1 /min:0 /max:400 /d:0.0
-Var=BMS_Status_MinTemperature signed 36,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Status_MaxTemperature signed 44,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Status_AverageTemperature signed 52,8 /u:C /min:-128 /max:127 /d:0
 
 [BMS_FaultVector]
 ID=2BCh
@@ -426,388 +435,328 @@ ID=2BEh
 Type=Standard
 DLC=8
 Mux=BMS_Voltages_mux0 0,8 0 
-Var=BMS_Voltages_Cell0 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell1 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell2 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell3 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell4 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell5 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell1 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell2 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell3 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell4 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell5 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell6 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_Voltages]
 DLC=8
 Mux=BMS_Voltages_mux1 0,8 1 
-Var=BMS_Voltages_Cell6 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell7 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell8 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell9 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell10 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell11 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell7 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell8 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell9 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell10 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell11 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell12 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_Voltages]
 DLC=8
 Mux=BMS_Voltages_mux2 0,8 2 
-Var=BMS_Voltages_Cell12 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell13 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell14 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell15 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell16 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell17 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell13 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell14 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell15 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell16 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell17 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell18 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_Voltages]
 DLC=8
 Mux=BMS_Voltages_mux3 0,8 3 
-Var=BMS_Voltages_Cell18 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell19 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell20 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell21 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell22 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell23 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg1_Cell19 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell1 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell2 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell3 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell4 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell5 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_Voltages]
 DLC=8
 Mux=BMS_Voltages_mux4 0,8 4 
-Var=BMS_Voltages_Cell24 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell25 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell26 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell27 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell28 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell29 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell6 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell7 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell8 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell9 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell10 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell11 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_Voltages]
 DLC=8
 Mux=BMS_Voltages_mux5 0,8 5 
-Var=BMS_Voltages_Cell30 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell31 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell32 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell33 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell34 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell35 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell12 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell13 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell14 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell15 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell16 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell17 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_Voltages]
 DLC=8
 Mux=BMS_Voltages_mux6 0,8 6 
-Var=BMS_Voltages_Cell36 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell37 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell38 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell39 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell40 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell41 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell18 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg2_Cell19 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell1 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell2 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell3 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell4 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_Voltages]
 DLC=8
 Mux=BMS_Voltages_mux7 0,8 7 
-Var=BMS_Voltages_Cell42 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell43 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell44 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell45 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell46 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell47 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell5 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell6 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell7 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell8 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell9 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell10 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_Voltages]
 DLC=8
 Mux=BMS_Voltages_mux8 0,8 8 
-Var=BMS_Voltages_Cell48 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell49 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell50 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell51 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell52 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell53 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell11 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell12 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell13 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell14 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell15 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell16 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_Voltages]
 DLC=8
 Mux=BMS_Voltages_mux9 0,8 9 
-Var=BMS_Voltages_Cell54 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell55 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell56 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell57 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell58 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell59 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell17 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell18 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg3_Cell19 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell1 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell2 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell3 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_Voltages]
 DLC=8
 Mux=BMS_Voltages_mux10 0,8 0Ah
-Var=BMS_Voltages_Cell60 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell61 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell62 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell63 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell64 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell65 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell4 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell5 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell6 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell7 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell8 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell9 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_Voltages]
 DLC=8
 Mux=BMS_Voltages_mux11 0,8 0Bh
-Var=BMS_Voltages_Cell66 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell67 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell68 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell69 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell70 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell71 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell10 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell11 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell12 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell13 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell14 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell15 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_Voltages]
 DLC=8
 Mux=BMS_Voltages_mux12 0,8 0Ch
-Var=BMS_Voltages_Cell72 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell73 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell74 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell75 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell76 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell77 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-
-[BMS_Voltages]
-DLC=8
-Mux=BMS_Voltages_mux13 0,8 0Dh
-Var=BMS_Voltages_Cell78 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell79 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell80 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell81 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell82 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell83 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-
-[BMS_Voltages]
-DLC=8
-Mux=BMS_Voltages_mux14 0,8 0Eh
-Var=BMS_Voltages_Cell84 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell85 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell86 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell87 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell88 unsigned 44,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_Voltages_Cell89 unsigned 53,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell16 unsigned 8,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell17 unsigned 17,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell18 unsigned 26,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_Voltages_Seg4_Cell19 unsigned 35,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_ThermistorVoltages]
 ID=2BFh
 Type=Standard
 DLC=8
 Mux=BMS_ThermistorVoltages_mux0 0,3 0 
-Var=BMS_ThermistorVoltages_tm0 unsigned 3,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm1 unsigned 12,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm2 unsigned 21,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm3 unsigned 30,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm4 unsigned 39,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm5 unsigned 48,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg1_tm1 unsigned 3,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg1_tm2 unsigned 12,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg1_tm3 unsigned 21,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg1_tm4 unsigned 30,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg1_tm5 unsigned 39,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg1_tm6 unsigned 48,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_ThermistorVoltages]
 DLC=8
 Mux=BMS_ThermistorVoltages_mux1 0,3 1 
-Var=BMS_ThermistorVoltages_tm6 unsigned 3,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm7 unsigned 12,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm8 unsigned 21,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm9 unsigned 30,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm10 unsigned 39,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm11 unsigned 48,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg1_tm7 unsigned 3,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg1_tm8 unsigned 12,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg2_tm1 unsigned 21,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg2_tm2 unsigned 30,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg2_tm3 unsigned 39,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg2_tm4 unsigned 48,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_ThermistorVoltages]
 DLC=8
 Mux=BMS_ThermistorVoltages_mux2 0,3 2 
-Var=BMS_ThermistorVoltages_tm12 unsigned 3,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm13 unsigned 12,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm14 unsigned 21,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm15 unsigned 30,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm16 unsigned 39,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm17 unsigned 48,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg2_tm5 unsigned 3,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg2_tm6 unsigned 12,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg2_tm7 unsigned 21,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg2_tm8 unsigned 30,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg3_tm1 unsigned 39,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg3_tm2 unsigned 48,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_ThermistorVoltages]
 DLC=8
 Mux=BMS_ThermistorVoltages_mux3 0,3 3 
-Var=BMS_ThermistorVoltages_tm18 unsigned 3,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm19 unsigned 12,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm20 unsigned 21,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm21 unsigned 30,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm22 unsigned 39,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm23 unsigned 48,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg3_tm3 unsigned 3,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg3_tm4 unsigned 12,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg3_tm5 unsigned 21,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg3_tm6 unsigned 30,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg3_tm7 unsigned 39,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg3_tm8 unsigned 48,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_ThermistorVoltages]
 DLC=8
 Mux=BMS_ThermistorVoltages_mux4 0,3 4 
-Var=BMS_ThermistorVoltages_tm24 unsigned 3,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm25 unsigned 12,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm26 unsigned 21,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm27 unsigned 30,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm28 unsigned 39,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm29 unsigned 48,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg4_tm1 unsigned 3,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg4_tm2 unsigned 12,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg4_tm3 unsigned 21,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg4_tm4 unsigned 30,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg4_tm5 unsigned 39,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg4_tm6 unsigned 48,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_ThermistorVoltages]
 DLC=8
 Mux=BMS_ThermistorVoltages_mux5 0,3 5 
-Var=BMS_ThermistorVoltages_tm30 unsigned 3,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm31 unsigned 12,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm32 unsigned 21,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm33 unsigned 30,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm34 unsigned 39,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm35 unsigned 48,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-
-[BMS_ThermistorVoltages]
-DLC=8
-Mux=BMS_ThermistorVoltages_mux6 0,3 6 
-Var=BMS_ThermistorVoltages_tm36 unsigned 3,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm37 unsigned 12,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm38 unsigned 21,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
-Var=BMS_ThermistorVoltages_tm39 unsigned 30,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg4_tm7 unsigned 3,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
+Var=BMS_ThermistorVoltages_Seg4_tm8 unsigned 12,9 /u:V /f:0.01 /min:0 /max:5.12 /d:0.00
 
 [BMS_Temperatures]
 ID=2C0h
 Type=Standard
 DLC=8
 Mux=BMS_Temperatures_mux0 0,3 0 
-Var=BMS_Temperatures_0 signed 3,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_1 signed 11,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_2 signed 19,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_3 signed 27,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_4 signed 35,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_5 signed 43,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_6 signed 51,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg1_1 signed 3,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg1_2 signed 11,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg1_3 signed 19,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg1_4 signed 27,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg1_5 signed 35,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg1_6 signed 43,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg1_7 signed 51,8 /u:C /min:-128 /max:127 /d:0
 
 [BMS_Temperatures]
 DLC=8
 Mux=BMS_Temperatures_mux1 0,3 1 
-Var=BMS_Temperatures_7 signed 3,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_8 signed 11,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_9 signed 19,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_10 signed 27,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_11 signed 35,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_12 signed 43,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_13 signed 51,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg1_8 signed 3,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg2_1 signed 11,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg2_2 signed 19,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg2_3 signed 27,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg2_4 signed 35,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg2_5 signed 43,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg2_6 signed 51,8 /u:C /min:-128 /max:127 /d:0
 
 [BMS_Temperatures]
 DLC=8
 Mux=BMS_Temperatures_mux2 0,3 2 
-Var=BMS_Temperatures_14 signed 3,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_15 signed 11,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_16 signed 19,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_17 signed 27,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_18 signed 35,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_19 signed 43,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_20 signed 51,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg2_7 signed 3,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg2_8 signed 11,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg3_1 signed 19,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg3_2 signed 27,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg3_3 signed 35,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg3_4 signed 43,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg3_5 signed 51,8 /u:C /min:-128 /max:127 /d:0
 
 [BMS_Temperatures]
 DLC=8
 Mux=BMS_Temperatures_mux3 0,3 3 
-Var=BMS_Temperatures_21 signed 3,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_22 signed 11,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_23 signed 19,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_24 signed 27,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_25 signed 35,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_26 signed 43,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_27 signed 51,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg3_6 signed 3,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg3_7 signed 11,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg3_8 signed 19,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg4_1 signed 27,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg4_2 signed 35,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg4_3 signed 43,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg4_4 signed 51,8 /u:C /min:-128 /max:127 /d:0
 
 [BMS_Temperatures]
 DLC=8
 Mux=BMS_Temperatures_mux4 0,3 4 
-Var=BMS_Temperatures_28 signed 3,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_29 signed 11,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_30 signed 19,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_31 signed 27,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_32 signed 35,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_33 signed 43,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_34 signed 51,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg4_5 signed 3,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg4_6 signed 11,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg4_7 signed 19,8 /u:C /min:-128 /max:127 /d:0
+Var=BMS_Temperatures_Seg4_8 signed 27,8 /u:C /min:-128 /max:127 /d:0
 
-[BMS_Temperatures]
-DLC=8
-Mux=BMS_Temperatures_mux5 0,3 5 
-Var=BMS_Temperatures_35 signed 3,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_36 signed 11,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_37 signed 19,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_38 signed 27,8 /u:C /min:-128 /max:127 /d:0
-Var=BMS_Temperatures_39 signed 35,8 /u:C /min:-128 /max:127 /d:0
-
-[BMS_DrainStatusA]
+[BMS_DrainStatus]
 ID=320h
 Type=Standard
 DLC=8
-Var=BMS_DrainStatusA_Cell0 unsigned 0,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell1 unsigned 1,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell2 unsigned 2,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell3 unsigned 3,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell4 unsigned 4,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell5 unsigned 5,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell6 unsigned 6,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell7 unsigned 7,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell8 unsigned 8,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell9 unsigned 9,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell10 unsigned 10,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell11 unsigned 11,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell12 unsigned 12,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell13 unsigned 13,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell14 unsigned 14,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell15 unsigned 15,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell16 unsigned 16,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell17 unsigned 17,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell18 unsigned 18,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell19 unsigned 19,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell20 unsigned 20,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell21 unsigned 21,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell22 unsigned 22,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell23 unsigned 23,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell24 unsigned 24,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell25 unsigned 25,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell26 unsigned 26,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell27 unsigned 27,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell28 unsigned 28,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell29 unsigned 29,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell30 unsigned 30,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell31 unsigned 31,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell32 unsigned 32,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell33 unsigned 33,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell34 unsigned 34,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell35 unsigned 35,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell36 unsigned 36,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell37 unsigned 37,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell38 unsigned 38,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell39 unsigned 39,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell40 unsigned 40,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell41 unsigned 41,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell42 unsigned 42,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell43 unsigned 43,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell44 unsigned 44,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell45 unsigned 45,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell46 unsigned 46,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell47 unsigned 47,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell48 unsigned 48,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell49 unsigned 49,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell50 unsigned 50,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell51 unsigned 51,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell52 unsigned 52,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell53 unsigned 53,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell54 unsigned 54,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell55 unsigned 55,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell56 unsigned 56,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell57 unsigned 57,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell58 unsigned 58,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell59 unsigned 59,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell60 unsigned 60,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell61 unsigned 61,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell62 unsigned 62,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusA_Cell63 unsigned 63,1 /min:0 /max:1 /d:0
+Mux=BMS_DrainStatus_mux0 0,1 0 
+Var=BMS_DrainStatus_Seg1_Cell1 unsigned 1,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell2 unsigned 2,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell3 unsigned 3,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell4 unsigned 4,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell5 unsigned 5,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell6 unsigned 6,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell7 unsigned 7,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell8 unsigned 8,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell9 unsigned 9,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell10 unsigned 10,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell11 unsigned 11,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell12 unsigned 12,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell13 unsigned 13,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell14 unsigned 14,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell15 unsigned 15,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell16 unsigned 16,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell17 unsigned 17,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell18 unsigned 18,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg1_Cell19 unsigned 19,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell1 unsigned 20,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell2 unsigned 21,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell3 unsigned 22,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell4 unsigned 23,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell5 unsigned 24,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell6 unsigned 25,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell7 unsigned 26,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell8 unsigned 27,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell9 unsigned 28,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell10 unsigned 29,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell11 unsigned 30,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell12 unsigned 31,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell13 unsigned 32,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell14 unsigned 33,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell15 unsigned 34,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell16 unsigned 35,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell17 unsigned 36,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell18 unsigned 37,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg2_Cell19 unsigned 38,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell1 unsigned 39,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell2 unsigned 40,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell3 unsigned 41,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell4 unsigned 42,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell5 unsigned 43,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell6 unsigned 44,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell7 unsigned 45,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell8 unsigned 46,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell9 unsigned 47,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell10 unsigned 48,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell11 unsigned 49,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell12 unsigned 50,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell13 unsigned 51,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell14 unsigned 52,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell15 unsigned 53,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell16 unsigned 54,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell17 unsigned 55,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell18 unsigned 56,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg3_Cell19 unsigned 57,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell1 unsigned 58,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell2 unsigned 59,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell3 unsigned 60,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell4 unsigned 61,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell5 unsigned 62,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell6 unsigned 63,1 /min:0 /max:1 /d:0
 
-[BMS_DrainStatusB]
-ID=321h
-Type=Standard
+[BMS_DrainStatus]
 DLC=8
-Var=BMS_DrainStatusB_Cell64 unsigned 0,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell65 unsigned 1,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell66 unsigned 2,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell67 unsigned 3,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell68 unsigned 4,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell69 unsigned 5,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell70 unsigned 6,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell71 unsigned 7,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell72 unsigned 8,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell73 unsigned 9,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell74 unsigned 10,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell75 unsigned 11,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell76 unsigned 12,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell77 unsigned 13,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell78 unsigned 14,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell79 unsigned 15,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell80 unsigned 16,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell81 unsigned 17,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell82 unsigned 18,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell83 unsigned 19,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell84 unsigned 20,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell85 unsigned 21,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell86 unsigned 22,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell87 unsigned 23,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell88 unsigned 24,1 /min:0 /max:1 /d:0
-Var=BMS_DrainStatusB_Cell89 unsigned 25,1 /min:0 /max:1 /d:0
+Mux=BMS_DrainStatus_mux1 0,1 1 
+Var=BMS_DrainStatus_Seg4_Cell7 unsigned 1,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell8 unsigned 2,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell9 unsigned 3,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell10 unsigned 4,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell11 unsigned 5,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell12 unsigned 6,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell13 unsigned 7,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell14 unsigned 8,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell15 unsigned 9,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell16 unsigned 10,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell17 unsigned 11,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell18 unsigned 12,1 /min:0 /max:1 /d:0
+Var=BMS_DrainStatus_Seg4_Cell19 unsigned 13,1 /min:0 /max:1 /d:0
 
 [BMS_Current]
 ID=384h
