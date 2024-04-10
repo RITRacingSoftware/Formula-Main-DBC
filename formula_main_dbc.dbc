@@ -554,9 +554,9 @@ BO_ 901 BMS_LimpMode: 8 BMS
  SG_ BMS_LimpMode_TempCurrentLimit : 13|9@1- (1,0) [-100|500] "A" Vector__XXX
 
 BO_ 2550588916 CHG_ChargeRequest: 8 BMS
- SG_ BMS_ChargeRequest_MaxVoltage : 0|16@1+ (0.1,0) [0|6553.5] "V"  CHG
- SG_ BMS_ChargeRequest_MaxCurrent : 16|16@1+ (0.1,0) [0|6553.5] "A"  CHG
- SG_ BMS_ChargeRequest_Control : 32|8@1+ (1,0) [0|1] ""  CHG
+ SG_ CHG_ChargeRequest_MaxVoltage : 0|16@1+ (0.1,0) [0|6553.5] "V"  CHG
+ SG_ CHG_ChargeRequest_MaxCurrent : 16|16@1+ (0.1,0) [0|6553.5] "A"  CHG
+ SG_ CHG_ChargeRequest_Control : 32|8@1+ (1,0) [0|1] ""  CHG
 
 BO_ 2566869221 CHG_ChargeStats: 8 CHG
  SG_ CHG_OutputVoltage : 0|16@1+ (0.1,0) [0|6553.5] "V" Vector__XXX
@@ -573,7 +573,7 @@ CM_ BU_ C70 "Bosch C70 Data Logger";
 CM_ BU_ VC "Vehicle Controller";
 CM_ BU_ MCU "Motor Control Unit";
 CM_ BU_ BMS "Battery Management System";
-CM_ BU_ CHG "Charge Cart";
+CM_ BU_ CHG "Elcon HK-J Charger";
 CM_ BU_ DASH "Dashboard Display";
 CM_ SG_ 601 BMS_Overview_Drains "Number of cells currently draining";
 CM_ BO_ 1790 "Wheel speeds, relayed by C70";
