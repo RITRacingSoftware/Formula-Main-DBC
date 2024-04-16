@@ -39,7 +39,7 @@ Var=C70_WheelSpeed_RR signed 48,16 /min:0 /max:65536 /d:0
 ID=6FFh	// Brake Pressures, relayed by C70
 Type=Standard
 DLC=8
-Var=C70_BrakePressureFront unsigned 0,16 /u:psi /min:0 /max:5000 /d:0
+Var=C70_BrakePressureFront signed 0,16 /u:psi /f:0.5 /o:2500 /min:0 /max:5000 /d:0.0
 Var=C70_BrakePressureRear signed 16,16 /u:psi /f:0.2 /o:1250 /min:0 /max:2500 /d:0.0
 
 [VC_Status]
