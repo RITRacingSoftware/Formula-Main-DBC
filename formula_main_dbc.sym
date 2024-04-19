@@ -354,7 +354,7 @@ Type=Standard
 DLC=8
 Var=BMS_Status_SOC unsigned 0,8 /u:% /min:0 /max:100 /d:0
 Var=BMS_Status_SOC_raw unsigned 8,8 /u:% /min:0 /max:100 /d:0
-Var=BMS_Status_ChargeState unsigned 16,5 /min:0 /max:4 /e:BMS_Status_ChargeState /d:0
+Var=BMS_Status_ChargeState unsigned 16,5 /min:0 /max:5 /e:BMS_Status_ChargeState /d:0
 Var=BMS_Status_PackVoltage unsigned 21,15 /u:V /f:0.1 /min:0 /max:400 /d:0.0
 
 [BMS_FaultVector]
