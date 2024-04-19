@@ -4,7 +4,7 @@ Title="canmatrix-Export"
 enum BMS_HardFaultIndicator_task(0="unknown", 1="task_1Hz", 2="task_10Hz", 3="task_1kHz", 4="can_rx_task")
 enum BMS_LimpMode_TempLimpLevel(0="LimpModeLevel_NO_LIMP", 1="LimpModeLevel_LEVEL_1", 2="LimpModeLevel_LEVEL_2", 3="LimpModeLevel_LEVEL_3")
 enum BMS_LimpMode_VoltageLimpLevel(0="LimpModeLevel_NO_LIMP", 1="LimpModeLevel_LEVEL_1", 2="LimpModeLevel_LEVEL_2", 3="LimpModeLevel_LEVEL_3")
-enum BMS_Status_ChargeState(0="ChargeState_DISCONNECTED", 1="ChargeState_CONNECTED_COMPLETE", 2="ChargeState_CONNECTED_BALANCING", 3="ChargeState_CONNECTED_CHARGING", 4="ChargeState_CONNECTED_BALANCE_SENSING")
+enum BMS_Status_ChargeState(0="ChargeState_DISCONNECTED", 1="ChargeState_CONNECTED_CHARGING", 2="ChargeState_CONNECTED_BALANCING", 3="ChargeState_CONNECTED_BALANCE_SENSING", 4="ChargeState_CONNECTED_COMPLETE", 5="ChargeState_CONNECTED_FAULTED")
 enum D1_VSM_State(0="VSM Start State", 1="Pre-Charge Init state", 2="pre-charge active state", 3="pre-charge complete state", 4="VSM wait state", 5="VSM ready state", 6="Motor Running State", 7="blink fault code state", 14="Shutdown state for Key Switch Mode 1", 15="Reset the inverter")
 enum D2_Inverter_State(0="Power up", 1="Stop", 2="Open Loop", 3="Closed Loop", 4="Internal State", 5="Internal State", 6="Internal State", 7="Internal State", 8="Idle Run", 9="Idle Stop", 10="Internal State", 11="Intern State", 12="Internal State")
 enum Direction_Command(0="CW", 1="CCW")
