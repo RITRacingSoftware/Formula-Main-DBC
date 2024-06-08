@@ -55,6 +55,18 @@ BO_ 1791 C70_BrakePressures: 8 C70
  SG_ C70_BrakePressureFront : 0|16@1- (0.5,2500) [0|5000] "psi" Vector__XXX
  SG_ C70_BrakePressureRear : 16|16@1- (0.2,1250) [0|2500] "psi" Vector__XXX
 
+BO_ 1874 C70_TireTemps: 8 C70
+ SG_ TireTemp_FL_Max : 0|16@1+ (0.01,-100) [-20|950] "degC" Vector__XXX
+ SG_ TireTemp_FR_Max : 16|16@1+ (0.01,-100) [-20|950] "degC" Vector__XXX
+ SG_ TireTemp_RL_Max : 32|16@1+ (0.01,-100) [-20|950] "degC" Vector__XXX
+ SG_ TireTemp_RR_Max : 48|16@1+ (0.01,-100) [-20|950] "degC" Vector__XXX
+
+BO_ 1875 C70_RotorTemps: 8 C70
+ SG_ RotorTemp_FL_Max : 0|16@1+ (0.01,-100) [-20|950] "degC" Vector__XXX
+ SG_ RotorTemp_FR_Max : 16|16@1+ (0.01,-100) [-20|950] "degC" Vector__XXX
+ SG_ RotorTemp_RL_Max : 32|16@1+ (0.01,-100) [-20|950] "degC" Vector__XXX
+ SG_ RotorTemp_RR_Max : 48|16@1+ (0.01,-100) [-20|950] "degC" Vector__XXX
+
 BO_ 301 VC_Status: 8 VC
  SG_ VC_Status_VehicleState : 0|4@1+ (1,0) [0|15] ""  DASH
  SG_ VC_Status_MC_State : 4|4@1+ (1,0) [0|15] ""  DASH

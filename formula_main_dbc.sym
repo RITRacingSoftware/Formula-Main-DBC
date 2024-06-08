@@ -42,6 +42,24 @@ DLC=8
 Var=C70_BrakePressureFront signed 0,16 /u:psi /f:0.5 /o:2500 /min:0 /max:5000 /d:0.0
 Var=C70_BrakePressureRear signed 16,16 /u:psi /f:0.2 /o:1250 /min:0 /max:2500 /d:0.0
 
+[C70_TireTemps]
+ID=752h
+Type=Standard
+DLC=8
+Var=TireTemp_FL_Max unsigned 0,16 /u:degC /f:0.01 /o:-100 /min:-20 /max:950 /d:0.00
+Var=TireTemp_FR_Max unsigned 16,16 /u:degC /f:0.01 /o:-100 /min:-20 /max:950 /d:0.00
+Var=TireTemp_RL_Max unsigned 32,16 /u:degC /f:0.01 /o:-100 /min:-20 /max:950 /d:0.00
+Var=TireTemp_RR_Max unsigned 48,16 /u:degC /f:0.01 /o:-100 /min:-20 /max:950 /d:0.00
+
+[C70_RotorTemps]
+ID=753h
+Type=Standard
+DLC=8
+Var=RotorTemp_FL_Max unsigned 0,16 /u:degC /f:0.01 /o:-100 /min:-20 /max:950 /d:0.00
+Var=RotorTemp_FR_Max unsigned 16,16 /u:degC /f:0.01 /o:-100 /min:-20 /max:950 /d:0.00
+Var=RotorTemp_RL_Max unsigned 32,16 /u:degC /f:0.01 /o:-100 /min:-20 /max:950 /d:0.00
+Var=RotorTemp_RR_Max unsigned 48,16 /u:degC /f:0.01 /o:-100 /min:-20 /max:950 /d:0.00
+
 [VC_Status]
 ID=12Dh
 Type=Standard
