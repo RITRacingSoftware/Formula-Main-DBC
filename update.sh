@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 VIRTUALENV_DIR=virtualenv
-DBC_FILENAME=formula_main_dbc
+DBC_FILENAME=inverter_dbc
 
 # Create virtualenv if doesn't exist
 if [ ! -d "$VIRTUALENV_DIR" ];
